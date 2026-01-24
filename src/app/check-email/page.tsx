@@ -209,11 +209,24 @@ function CheckEmailContent() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="text-gray-400 text-sm mb-8 leading-relaxed"
+          className="text-gray-400 text-sm mb-4 leading-relaxed"
         >
           We sent a secure confirmation link to<br />
           <span className="text-white font-bold text-base">{email}</span>
         </motion.p>
+
+        {/* Spam Notice */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          className="flex items-center gap-2 px-4 py-2.5 mb-8 bg-orange-500/10 border border-orange-500/20 rounded-xl"
+        >
+          <span className="text-orange-400 text-lg">📬</span>
+          <p className="text-xs text-orange-300/90 font-medium">
+            Can't find it? Please check your <span className="font-bold text-orange-400">Spam</span> or <span className="font-bold text-orange-400">Junk</span> folder
+          </p>
+        </motion.div>
 
         {/* Timer */}
         <AnimatePresence mode="wait">
