@@ -2,12 +2,11 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import crypto from 'crypto'
 
-// Generate unique referral code
+// ... (Helper functions same rahengi)
 function generateRefCode(): string {
   return 'BR' + crypto.randomBytes(4).toString('hex').toUpperCase()
 }
 
-// Supabase Admin Client
 function getSupabaseAdmin() {
   return createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -25,13 +24,25 @@ export async function POST(request: NextRequest) {
   try {
     const { email, referredBy } = await request.json()
 
+    // 🧠 LOGIC START: Dynamic URL Detection
+    // 1. Request ke header se poocho "Tum kahan se aaye ho?"
+    const origin = request.headers.get('origin')
+    
+    // 2. Agar origin hai (e.g., http://localhost:3000) toh wo use karo, 
+    // warna environment variable uthao.
+    const siteUrl = origin || process.env.NEXT_PUBLIC_SITE_URL || 'https://baserise.vercel.app'
+    
+    console.log(`📡 Request from: ${origin}, Redirecting to: ${siteUrl}/verified`) 
+    // (Ye console log Vercel logs mein debugging ke liye help karega)
+    // 🧠 LOGIC END
+
     if (!email) {
       return NextResponse.json({ error: 'Email is required' }, { status: 400 })
     }
 
     const supabaseAdmin = getSupabaseAdmin()
 
-    // 1. Check if email already exists
+    // 1. Check Existing User
     const { data: existingUser } = await supabaseAdmin
       .from('waitlist')
       .select('email, is_verified, ref_code')
@@ -49,22 +60,20 @@ export async function POST(request: NextRequest) {
         const { error: otpError } = await supabaseAdmin.auth.signInWithOtp({
           email,
           options: {
-            // 🚨 FIX: Redirect directly to frontend page
-            emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/verified`,
+            // 👇 Yahan humne Dynamic URL use kiya
+            emailRedirectTo: `${siteUrl}/verified`,
             shouldCreateUser: true,
           }
         })
 
         if (otpError) return NextResponse.json({ error: otpError.message }, { status: 500 })
-        
         return NextResponse.json({ success: true, message: 'Verification email resent!' })
       }
     }
 
-    // 2. New User - Generate Code
+    // 2. Create New User Logic
     const refCode = generateRefCode()
 
-    // 3. Insert into Database (Without User ID for now)
     const { error: insertError } = await supabaseAdmin
       .from('waitlist')
       .insert({
@@ -76,16 +85,15 @@ export async function POST(request: NextRequest) {
       })
 
     if (insertError) {
-      console.error('Waitlist insert error:', insertError)
       return NextResponse.json({ error: 'Failed to add to waitlist' }, { status: 500 })
     }
 
-    // 4. Send Magic Link
+    // 3. Send Magic Link (New User)
     const { error: authError } = await supabaseAdmin.auth.signInWithOtp({
       email,
       options: {
-        // 🚨 FIX: Seedha verified page par bhejo
-        emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/verified`,
+        // 👇 Yahan bhi Dynamic URL
+        emailRedirectTo: `${siteUrl}/verified`,
         shouldCreateUser: true,
       }
     })
