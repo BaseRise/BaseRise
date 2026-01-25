@@ -101,9 +101,12 @@ export default function Whitepaper() {
                         </h2>
                         <div className="grid gap-6 mt-6">
                             <div className="p-6 bg-white/5 rounded-2xl border border-white/10">
-                                <h3 className="text-white font-bold mb-2">Fair Tier System</h3>
-                                <p className="text-sm">Allocations are calculated based on a weighted-score of held tokens and engagement duration. No lottery, just guaranteed access.</p>
-                            </div>
+                                <h3 className="text-white font-bold mb-2">Contribution-Based Access</h3>
+                                <p className="text-sm">
+                                    We prioritize active community members over passive holders. Allocations are earned through
+                                    <strong> ecosystem contribution</strong>—including community engagement, platform testing,
+                                    and early feedback. The harder you work for the protocol, the higher your allocation rank.
+                                </p>                            </div>
                             <div className="p-6 bg-white/5 rounded-2xl border border-white/10">
                                 <h3 className="text-white font-bold mb-2">Rigorous Vetting</h3>
                                 <p className="text-sm">Every project must pass KYC, Audit, and Liquidity Lock requirements before listing on BaseRise.</p>
