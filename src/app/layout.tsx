@@ -12,39 +12,29 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// src/app/layout.tsx mein metadata update karein
+// src/app/layout.tsx
 
 export const metadata = {
-  title: 'BaseRise', // Title thora lamba rakha hai SEO ke liye
+  title: 'BaseRise | Launchpad on Base',
   description: 'The premier Launchpad on Base Network. Secure guaranteed allocations in the next generation of high-potential projects.',
   
-  // Metadata for Google Search Appearance
   metadataBase: new URL('https://baserise.online'),
   alternates: {
     canonical: '/',
   },
 
   icons: {
-    // 1. Primary Favicon (SVG for high quality in modern browsers)
+    // Sirf ye aik hissa rakhein. 
+    // Ye code khud hi Blue 'B' icon bana kar browser ko de dega.
     icon: [
       {
         url: `data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2225%22 fill=%22%232563eb%22/><text x=%2250%22 y=%2255%22 font-size=%2265%22 font-weight=%22800%22 fill=%22white%22 font-family=%22sans-serif%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>B</text></svg>`,
         type: 'image/svg+xml',
       },
-      // 2. Fallback PNG Icon (Google Crawler aksar absolute PNGs ko zyada pasand karta hai)
-      {
-        url: '/icon.png', 
-        sizes: '32x32',
-        type: 'image/png',
-      },
     ],
-    // 3. Apple Touch Icon (For iOS bookmarks)
-    apple: [
-      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
-    ],
+    // Apple aur PNG fallback maine hata diya hai kyunke files missing thin
   },
 
-  // Social Media Previews (Jab link share karenge toh achi image nazar aayegi)
   openGraph: {
     title: 'BaseRise | Access the Future of Base',
     description: 'Premier Launchpad on Base Network.',
@@ -54,7 +44,6 @@ export const metadata = {
     type: 'website',
   },
 }
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -63,7 +52,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* JSON-LD Schema for Google Sitelinks */}
+        {/* Google Sitelinks Schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
