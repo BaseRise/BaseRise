@@ -27,7 +27,7 @@ function MaintenanceBanner({ isVisible, onClose, bannerRef }: { isVisible: boole
           <div className="flex items-start md:items-center gap-2 md:gap-3 text-yellow-500">
             <AlertTriangle size={18} className="flex-shrink-0 animate-pulse mt-0.5 md:mt-0" />
             <p className="text-xs md:text-sm font-medium text-yellow-200/90">
-              <span className="font-bold text-yellow-400">Technical Issue:</span> We are having some issues with our database. Waitlist and newsletter are not working  temporarily.
+              <span className="font-bold text-yellow-400">We are investigating a technical issue</span>. Waitlist joining and newsletter subscriptions may be delayed.
             </p>
           </div>
           <button 
