@@ -27,6 +27,20 @@ export default function LandingPage() {
   // 2. Newsletter Handler
   const handleNewsletterSubmit = async () => {
     if (!newsEmail) return;
+    // 1. Regex Validation: Sirf sahi email format allow hoga
+    // Is se koi hacker 'javascript:alert()' jaisi cheezein nahi daal sakega
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(newsEmail)) {
+      setMessage({ text: "Please enter a valid email address.", type: 'error' });
+      return;
+    }
+
+    // 2. Sanitization: Dangerous symbols ko khatam karna
+    // Agar koi '<script>' likhay ga toh hum usey 'clean' kar denge
+    const cleanEmail = newsEmail.replace(/[<>]/g, "").trim().toLowerCase();
+
+    setSubmitting(true);
+    setMessage(null);
 
     setSubmitting(true);
     setMessage(null);
@@ -80,6 +94,14 @@ export default function LandingPage() {
           <div className="flex items-center gap-2 cursor-pointer">
             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-white text-lg">B</div>
             <span className="text-xl font-semibold tracking-tight">BaseRise</span>
+          </div>
+
+          {/* Center: Leaderboard Link */}
+          <div className="absolute left-1/2 -translate-x-1/2 hidden md:block">
+            <Link href="/leaderboard" className="text-gray-400 hover:text-blue-500 transition-colors font-medium flex items-center gap-2">
+              <Layers size={18} />
+              Leaderboard
+            </Link>
           </div>
 
           {/* Right Side Actions - Only Waitlist for now */}
@@ -233,9 +255,9 @@ export default function LandingPage() {
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                   </svg>
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center transition-all duration-300 group hover:bg-[#0A66C2] hover:border-[#0A66C2] hover:shadow-[0_0_20px_rgba(10,102,194,0.5)]">
+                {/* <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center transition-all duration-300 group hover:bg-[#0A66C2] hover:border-[#0A66C2] hover:shadow-[0_0_20px_rgba(10,102,194,0.5)]">
                   <Linkedin size={18} className="text-gray-400 group-hover:text-white transition-colors duration-300" />
-                </a>
+                </a> */}
                 <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center transition-all duration-300 group hover:bg-[#333] hover:border-white/20 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]">
                   <Github size={18} className="text-gray-400 group-hover:text-white transition-colors duration-300" />
                 </a>
