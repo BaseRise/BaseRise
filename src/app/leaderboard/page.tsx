@@ -27,7 +27,7 @@ export default async function LeaderboardPage() {
                     <div className="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mb-4 border border-blue-500/30">
                         <Trophy className="text-blue-500" size={32} />
                     </div>
-                    <h1 className="text-4xl md:text-5xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500 uppercase tracking-tighter">
+                    <h1 className="text-4xl md:text-5xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500  tracking-tighter">
                         BaseRise Top 100
                     </h1>
                     <p className="text-gray-500 mt-2 font-mono uppercase tracking-[0.2em] text-sm">Elite Referral Program</p>
@@ -48,7 +48,7 @@ export default async function LeaderboardPage() {
                                 <th className="p-6 border-b border-white/5">Ambassador</th>
                                 <th className="p-6 border-b border-white/5 text-center">Referral ID</th>
                                 <th className="p-6 border-b border-white/5 text-right flex items-center justify-end gap-2">
-                                    <Users size={14} /> Points
+                                    <Users size={14} /> Referrals
                                 </th>
                             </tr>
                         </thead>

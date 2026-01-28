@@ -123,14 +123,48 @@ export default function LookupPage() {
         }
     };
 
-    // Helper to copy Ref Code
+    // Helper to copy Ref Code with fallback for mobile
     const copyToClipboard = () => {
         if (!stats?.ref_code) return;
         const link = `${window.location.origin}/waitlist?ref=${stats.ref_code}`;
-        navigator.clipboard.writeText(link).then(() => {
+        
+        // Try modern clipboard API first (secure contexts)
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(link).then(() => {
+                setCopied(true);
+                setTimeout(() => setCopied(false), 2000);
+            }).catch(() => {
+                // Fallback if clipboard API fails
+                fallbackCopy(link);
+            });
+        } else {
+            // Fallback for non-secure contexts (http://192.168.x.x etc.)
+            fallbackCopy(link);
+        }
+    };
+
+    // Fallback copy using textarea + execCommand
+    const fallbackCopy = (text: string) => {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-9999px';
+        textArea.style.top = '-9999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+            document.execCommand('copy');
             setCopied(true);
             setTimeout(() => setCopied(false), 2000);
-        }).catch(err => console.error("Copy failed", err));
+        } catch (err) {
+            console.error('Fallback copy failed:', err);
+            // As last resort, prompt user to manually copy
+            window.prompt('Copy this link:', text);
+        }
+        
+        document.body.removeChild(textArea);
     };
 
     return (
@@ -314,34 +348,49 @@ export default function LookupPage() {
                                     </div>
                                 </div>
 
-                                <div 
-                                    onClick={copyToClipboard}
-                                    className="bg-blue-600/10 border border-blue-500/30 p-4 rounded-xl relative group overflow-hidden cursor-pointer hover:bg-blue-600/20 transition-all"
-                                >
-                                    <div className="absolute top-0 right-0 p-2 opacity-50 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-0">
-                                        <Copy size={80} className="text-blue-500/10 -rotate-12" />
-                                    </div>
-
-                                    <p className="text-[10px] uppercase tracking-wider text-blue-400 mb-2 font-bold h-4">
-                                        <span className="group-hover:hidden">Your Referral Link</span>
-                                        <span className="hidden group-hover:flex items-center gap-1.5 text-white">
-                                            Click to Copy <Copy size={10} />
-                                        </span>
+                                <div className="bg-blue-600/10 border border-blue-500/30 p-4 rounded-xl relative overflow-hidden">
+                                    <p className="text-[10px] uppercase tracking-wider text-blue-400 mb-2 font-bold">
+                                        Your Referral Link
                                     </p>
 
-                                    <div className="flex items-center justify-between gap-3 bg-black/40 rounded-lg p-3 border border-blue-500/20 group-hover:border-blue-500/40 transition-colors">
-                                        {/* Link Display (Truncated for clean look) */}
-                                        <span className="text-sm font-mono text-white/90 truncate">
-                                            {typeof window !== 'undefined' ? window.location.origin : ''}/waitlist?ref={stats.ref_code}
-                                        </span>
+                                    <div className="flex items-center gap-2 bg-black/40 rounded-lg p-2 border border-blue-500/20">
+                                        {/* Scrollable + Selectable Input - User can manually copy too */}
+                                        <input
+                                            type="text"
+                                            readOnly
+                                            value={`${typeof window !== 'undefined' ? window.location.origin : ''}/waitlist?ref=${stats.ref_code}`}
+                                            onClick={(e) => (e.target as HTMLInputElement).select()}
+                                            className="flex-1 bg-transparent text-sm font-mono text-white/90 outline-none border-none overflow-x-auto whitespace-nowrap cursor-text select-all"
+                                            style={{ WebkitOverflowScrolling: 'touch' } as React.CSSProperties}
+                                        />
 
-                                        {/* Copy Button */}
-                                        <button
-                                            onClick={copyToClipboard}
-                                            className="p-2 hover:bg-white/10 rounded-lg transition-colors flex-shrink-0"
-                                        >
-                                            {copied ? <Check size={18} className="text-green-400" /> : <Copy size={18} className="text-blue-400" />}
-                                        </button>
+                                        {/* Copy Button with Tooltip */}
+                                        <div className="relative group/copy flex-shrink-0">
+                                            <button
+                                                type="button"
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    copyToClipboard();
+                                                }}
+                                                aria-label="Copy referral link"
+                                                className="p-2 hover:bg-white/10 rounded-lg transition-all duration-200 hover:scale-110"
+                                            >
+                                                {copied ? (
+                                                    <Check size={18} className="text-green-400" />
+                                                ) : (
+                                                    <Copy size={18} className="text-blue-400" />
+                                                )}
+                                            </button>
+                                            
+                                            {/* Tooltip - Desktop hover / shows "Copied!" on click */}
+                                            <span className={`absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 rounded text-[10px] font-bold whitespace-nowrap transition-all duration-200 ${
+                                                copied 
+                                                    ? 'bg-green-500 text-white opacity-100 scale-100' 
+                                                    : 'bg-gray-800 text-gray-300 opacity-0 group-hover/copy:opacity-100 scale-90 group-hover/copy:scale-100'
+                                            }`}>
+                                                {copied ? 'Copied!' : 'Copy link'}
+                                            </span>
+                                        </div>
                                     </div>
 
                                     <p className="text-[10px] text-gray-500 mt-2 text-center">
