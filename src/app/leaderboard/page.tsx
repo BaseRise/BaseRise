@@ -3,6 +3,9 @@ import Link from 'next/link'
 import { ArrowLeft, Trophy, Users } from 'lucide-react'
 import CopyRefCode from '@/components/CopyRefCode'
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -12,6 +15,7 @@ export default async function LeaderboardPage() {
     const { data: leaderboard, error } = await supabase
         .from('leaderboard')
         .select('*')
+        .order('current_rank', { ascending: true })
 
     return (
         <div className="min-h-screen bg-[#050505] text-white p-6 md:p-10 font-sans relative">
