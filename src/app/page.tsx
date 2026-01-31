@@ -88,7 +88,7 @@ export default function LandingPage() {
       {/* ==========================================
           NAVBAR (Clean - Teaser Mode)
       ========================================== */}
-      <nav 
+      <nav
         className="fixed top-0 w-full z-50 border-b border-white/5 bg-[#050505]/80 backdrop-blur-md transition-all duration-300"
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex justify-between items-center relative">
@@ -233,8 +233,7 @@ export default function LandingPage() {
                   </div>
                   <h3 className="text-2xl font-bold mb-3 text-white">How it Works?</h3>
                   <p className="text-gray-400 text-sm leading-relaxed">
-                    Simple and transparent. Participate in our ecosystem to qualify for tiers. The more you engage, the larger your guaranteed allocation in upcoming project launches.
-                  </p>
+                    Simple and transparent. Join the official waitlist to secure your spot in the BaseRise ecosystem. Refer friends to climb the leaderboard; the higher your rank, the earlier your access to upcoming ecosystem benefits.                  </p>
                 </div>
               </div>
             </div>
@@ -250,8 +249,7 @@ export default function LandingPage() {
                   </div>
                   <h3 className="text-2xl font-bold mb-3 text-white">Why Base Chain?</h3>
                   <p className="text-gray-400 text-sm leading-relaxed">
-                    Built on Coinbase’s L2, Base offers near-zero gas fees and lightning-fast transactions. It is the fastest-growing on-chain ecosystem, and we give you the first seat at the table.
-                  </p>
+                    Built on Coinbase’s L2, Base offers Ethereum-level security with near-zero gas fees and lightning-fast transactions. It is the fastest-growing on-chain ecosystem, and we give you the front-row seat at the table                  </p>
                 </div>
               </div>
             </div>
@@ -267,8 +265,7 @@ export default function LandingPage() {
                   </div>
                   <h3 className="text-2xl font-bold mb-3 text-white">Verified Allocations</h3>
                   <p className="text-gray-400 text-sm leading-relaxed">
-                    Safety first. We rigorously vet every project before listing. Secure your entry into legitimate, high-potential tokens before they hit the public market.
-                  </p>
+                    Safety first. We rigorously vet every project within our community framework. Secure your entry into legitimate, high-potential opportunities before they hit the public market. Your loyalty is your ticket.                  </p>
                 </div>
               </div>
             </div>
