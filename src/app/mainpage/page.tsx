@@ -6,7 +6,7 @@ import { ArrowRight, Twitter, Linkedin, Github, Send, Mail } from "lucide-react"
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-[#050505] text-white overflow-hidden relative font-sans selection:bg-blue-600 selection:text-white flex flex-col justify-between">
+    <div className="min-h-screen bg-[#050505] text-white overflow-hidden relative font-sans selection:bg-[#2563EB] selection:text-white flex flex-col justify-between">
 
       {/* ==========================================
           BACKGROUND
@@ -19,7 +19,7 @@ export default function LandingPage() {
             backgroundSize: '80px 80px',
           }}
         ></div>
-        <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[150px]"></div>
+        <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-[#2563EB]/10 rounded-full blur-[150px]"></div>
       </div>
 
       {/* ==========================================
@@ -28,19 +28,19 @@ export default function LandingPage() {
       <nav className="fixed top-0 w-full z-50 border-b border-white/5 bg-[#050505]/80 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-white text-lg">B</div>
+            <div className="w-8 h-8 bg-gradient-to-r from-[#2563EB] to-[#1E3A8A] rounded-lg flex items-center justify-center font-bold text-white text-lg">B</div>
             <span className="text-xl font-semibold tracking-tight">BaseRise</span>
           </div>
 
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
-            <a href="#" className="hover:text-blue-400 transition-colors">Products</a>
-            <a href="#" className="hover:text-blue-400 transition-colors">Ecosystem</a>
-            <a href="#" className="hover:text-blue-400 transition-colors">Developers</a>
+            <a href="#" className="hover:text-[#2563EB] transition-colors">Products</a>
+            <a href="#" className="hover:text-[#2563EB] transition-colors">Ecosystem</a>
+            <a href="#" className="hover:text-[#2563EB] transition-colors">Developers</a>
           </div>
 
           <div className="flex items-center gap-4">
             <button className="hidden md:block text-sm font-medium text-gray-300 hover:text-white">Log in</button>
-            <button className="px-5 py-2.5 bg-blue-600 text-white font-semibold rounded-full text-sm hover:bg-blue-500 transition-all shadow-[0_0_15px_rgba(37,99,235,0.3)]">
+            <button className="px-5 py-2.5 bg-gradient-to-r from-[#2563EB] to-[#1E3A8A] text-white font-semibold rounded-full text-sm hover:from-[#3B82F6] hover:to-[#2563EB] transition-all shadow-[0_0_15px_rgba(37,99,235,0.3)]">
               Get Started
             </button>
           </div>
@@ -55,9 +55,9 @@ export default function LandingPage() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 text-sm font-medium mb-8 text-blue-200 backdrop-blur-sm"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#2563EB]/30 bg-[#2563EB]/10 text-sm font-medium mb-8 text-[#93C5FD] backdrop-blur-sm"
           >
-            <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+            <span className="w-2 h-2 rounded-full bg-[#2563EB] animate-pulse"></span>
             <span>Baserise Mainnet is now Live</span>
           </motion.div>
 
@@ -67,7 +67,7 @@ export default function LandingPage() {
             transition={{ delay: 0.1 }}
             className="text-5xl md:text-7xl font-semibold tracking-tight leading-[1.1] mb-8 text-white"
           >
-            The Next <span className="text-blue-600">Evolution</span><br />
+            The Next <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563EB] to-[#1E3A8A]">Evolution</span><br />
             of On-Chain Finance.
           </motion.h1>
 
@@ -87,7 +87,7 @@ export default function LandingPage() {
             transition={{ delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4 mb-24"
           >
-            <button className="px-8 py-4 bg-blue-600 text-white rounded-full font-bold text-lg hover:bg-blue-500 transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(37,99,235,0.4)]">
+            <button className="px-8 py-4 bg-gradient-to-r from-[#2563EB] to-[#1E3A8A] text-white rounded-full font-bold text-lg hover:from-[#3B82F6] hover:to-[#2563EB] transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(37,99,235,0.4)]">
               Secure Your Spot <ArrowRight size={20} />
             </button>
             <button className="px-8 py-4 bg-white/5 border border-white/10 text-white rounded-full font-bold text-lg hover:bg-white/10 transition-colors flex items-center justify-center gap-2">
@@ -104,14 +104,14 @@ export default function LandingPage() {
         <div className="bg-[#0a0a0a] border border-white/10 rounded-[3rem] p-8 md:p-12 overflow-hidden relative">
 
           {/* Background Glow inside footer */}
-          <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-blue-600/5 rounded-full blur-[100px]"></div>
+          <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[#2563EB]/5 rounded-full blur-[100px]"></div>
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 relative z-10">
 
             {/* Left Column: Brand & Socials */}
             <div className="md:col-span-5 space-y-8">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-white text-lg">B</div>
+                <div className="w-8 h-8 bg-gradient-to-r from-[#2563EB] to-[#1E3A8A] rounded-lg flex items-center justify-center font-bold text-white text-lg">B</div>
                 <span className="text-2xl font-semibold tracking-tight">BaseRise</span>
               </div>
               <p className="text-gray-400 leading-relaxed max-w-sm">
@@ -120,16 +120,16 @@ export default function LandingPage() {
 
               {/* Social Icons */}
               <div className="flex gap-4">
-                <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-blue-600 hover:border-blue-600 transition-all group">
+                <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#2563EB] hover:border-[#2563EB] transition-all group">
                   <Twitter size={18} className="text-gray-400 group-hover:text-white" />
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-blue-600 hover:border-blue-600 transition-all group">
+                <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#2563EB] hover:border-[#2563EB] transition-all group">
                   <Linkedin size={18} className="text-gray-400 group-hover:text-white" />
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-blue-600 hover:border-blue-600 transition-all group">
+                <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#2563EB] hover:border-[#2563EB] transition-all group">
                   <Github size={18} className="text-gray-400 group-hover:text-white" />
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-blue-600 hover:border-blue-600 transition-all group">
+                <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#2563EB] hover:border-[#2563EB] transition-all group">
                   <Send size={18} className="text-gray-400 group-hover:text-white" />
                 </a>
               </div>
@@ -139,10 +139,10 @@ export default function LandingPage() {
             <div className="md:col-span-3 space-y-6">
               <h4 className="text-sm font-semibold uppercase tracking-wider text-gray-500">Resources</h4>
               <ul className="space-y-4 text-gray-300">
-                <li><a href="#" className="hover:text-blue-400 transition-colors">Media Kit</a></li>
-                <li><a href="#" className="hover:text-blue-400 transition-colors">Smart Contracts</a></li>
-                <li><a href="#" className="hover:text-blue-400 transition-colors">Whitepaper</a></li>
-                <li><a href="#" className="hover:text-blue-400 transition-colors">Security Audit</a></li>
+                <li><a href="#" className="hover:text-[#2563EB] transition-colors">Media Kit</a></li>
+                <li><a href="#" className="hover:text-[#2563EB] transition-colors">Smart Contracts</a></li>
+                <li><a href="#" className="hover:text-[#2563EB] transition-colors">Whitepaper</a></li>
+                <li><a href="#" className="hover:text-[#2563EB] transition-colors">Security Audit</a></li>
               </ul>
             </div>
 
@@ -155,9 +155,9 @@ export default function LandingPage() {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="bg-white/5 border border-white/10 rounded-full px-5 py-3 w-full text-sm text-white focus:outline-none focus:border-blue-500/50 transition-colors"
+                  className="bg-white/5 border border-white/10 rounded-full px-5 py-3 w-full text-sm text-white focus:outline-none focus:border-[#2563EB]/50 transition-colors"
                 />
-                <button className="bg-blue-600 hover:bg-blue-500 text-white p-3 rounded-full transition-colors flex-shrink-0">
+                <button className="bg-gradient-to-r from-[#2563EB] to-[#1E3A8A] hover:from-[#3B82F6] hover:to-[#2563EB] text-white p-3 rounded-full transition-colors flex-shrink-0">
                   <ArrowRight size={20} />
                 </button>
               </div>

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight, Loader2, CheckCircle2, AlertCircle,
   Github, Linkedin, Send, Twitter, Layers, Zap, ShieldCheck, Menu, X
@@ -68,7 +69,7 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white overflow-hidden relative font-sans selection:bg-blue-600 selection:text-white flex flex-col justify-between">
+    <div className="min-h-screen bg-[#050505] text-white overflow-hidden relative font-sans selection:bg-[#2563EB] selection:text-white flex flex-col justify-between">
 
       {/* ==========================================
           BACKGROUND
@@ -81,7 +82,7 @@ export default function LandingPage() {
             backgroundSize: '80px 80px',
           }}
         ></div>
-        <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[150px]"></div>
+        <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-[#2563EB]/10 rounded-full blur-[150px]"></div>
         <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[150px]"></div>
       </div>
 
@@ -95,17 +96,17 @@ export default function LandingPage() {
 
           {/* Logo */}
           <div className="flex items-center gap-2 cursor-pointer">
-            <div className="w-7 h-7 md:w-8 md:h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-white text-base md:text-lg">B</div>
+            <Image src="/BaseRise.svg" alt="BaseRise Logo" width={32} height={32} className="w-7 h-7 md:w-8 md:h-8" />
             <span className="text-lg md:text-xl font-semibold tracking-tight">BaseRise</span>
           </div>
 
           {/* Center: Leaderboard & Check Profile Links - Desktop Only */}
           <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center gap-8">
-            <Link href="/leaderboard" className="text-gray-400 hover:text-blue-500 transition-colors font-medium flex items-center gap-2">
+            <Link href="/leaderboard" className="text-gray-400 hover:text-[#2563EB] transition-colors font-medium flex items-center gap-2">
               <Layers size={18} />
               Leaderboard
             </Link>
-            <Link href="/lookup" className="text-gray-400 hover:text-blue-500 transition-colors font-medium flex items-center gap-2">
+            <Link href="/lookup" className="text-gray-400 hover:text-[#2563EB] transition-colors font-medium flex items-center gap-2">
               <ShieldCheck size={18} />
               Check Your Profile
             </Link>
@@ -114,7 +115,7 @@ export default function LandingPage() {
           {/* Right Side Actions - Desktop Only */}
           <div className="hidden md:flex items-center gap-4">
             <Link href="/waitlist">
-              <button className="px-4 md:px-5 py-2 md:py-2.5 bg-blue-600 text-white font-semibold rounded-full text-xs md:text-sm hover:bg-blue-500 transition-all shadow-[0_0_15px_rgba(37,99,235,0.3)]">
+              <button className="px-4 md:px-5 py-2 md:py-2.5 bg-gradient-to-r from-[#2563EB] to-[#1E3A8A] text-white font-semibold rounded-full text-xs md:text-sm hover:from-[#3B82F6] hover:to-[#2563EB] transition-all shadow-[0_0_15px_rgba(37,99,235,0.3)]">
                 Join Waitlist
               </button>
             </Link>
@@ -160,7 +161,7 @@ export default function LandingPage() {
                 <Link
                   href="/waitlist"
                   onClick={() => setMenuOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full px-4 py-4 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-500 transition-all shadow-[0_0_15px_rgba(37,99,235,0.3)]"
+                  className="flex items-center justify-center gap-2 w-full px-4 py-4 rounded-xl bg-gradient-to-r from-[#2563EB] to-[#1E3A8A] text-white font-semibold hover:from-[#3B82F6] hover:to-[#2563EB] transition-all shadow-[0_0_15px_rgba(37,99,235,0.3)]"
                 >
                   Join Waitlist
                   <ArrowRight size={18} />
@@ -183,7 +184,7 @@ export default function LandingPage() {
             className="text-5xl md:text-7xl font-semibold tracking-tight leading-[1.1] mb-8 text-white"
           >
             Access the Future of <br />
-            <span className="text-blue-600">Base Ecosystem.</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563EB] to-[#1E3A8A]">Base Ecosystem.</span>
           </motion.h1>
 
           <motion.p
@@ -202,7 +203,7 @@ export default function LandingPage() {
             className="flex flex-col sm:flex-row gap-4 mb-24"
           >
             <Link href="/waitlist">
-              <button className="px-10 py-5 bg-blue-600 text-white rounded-full font-bold text-lg hover:bg-blue-500 transition-all flex items-center justify-center gap-2 shadow-[0_0_30px_rgba(37,99,235,0.4)]">
+              <button className="px-10 py-5 bg-gradient-to-r from-[#2563EB] to-[#1E3A8A] text-white rounded-full font-bold text-lg hover:from-[#3B82F6] hover:to-[#2563EB] transition-all flex items-center justify-center gap-2 shadow-[0_0_30px_rgba(37,99,235,0.4)]">
                 Join Waitlist <ArrowRight size={22} />
               </button>
             </Link>
@@ -215,20 +216,20 @@ export default function LandingPage() {
         <section className="relative z-10 pb-20">
           <div className="mb-16">
             <h2 className="text-2xl md:text-4xl font-bold mb-4">
-              Your Gateway to <span className="text-blue-500">Early Access.</span>
+              Your Gateway to <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563EB] to-[#1E3A8A]">Early Access.</span>
             </h2>
-            <div className="h-1 w-20 bg-blue-600 rounded-full"></div>
+            <div className="h-1 w-20 bg-gradient-to-r from-[#2563EB] to-[#1E3A8A] rounded-full"></div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
             {/* Card 1: How it Works */}
-            <div className="group relative p-1 rounded-3xl bg-gradient-to-b from-white/10 to-white/5 hover:from-blue-600/50 hover:to-blue-900/50 transition-all duration-500">
-              <div className="absolute inset-0 bg-blue-600/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
+            <div className="group relative p-1 rounded-3xl bg-gradient-to-b from-white/10 to-white/5 hover:from-[#2563EB]/50 hover:to-[#1E3A8A]/50 transition-all duration-500">
+              <div className="absolute inset-0 bg-[#2563EB]/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
               <div className="relative h-full bg-[#0a0a0a] rounded-[22px] p-8 border border-white/5 flex flex-col justify-between overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-[50px] -translate-y-1/2 translate-x-1/2" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#2563EB]/10 rounded-full blur-[50px] -translate-y-1/2 translate-x-1/2" />
                 <div>
-                  <div className="w-12 h-12 bg-blue-900/30 rounded-full flex items-center justify-center mb-6 border border-blue-500/20 text-blue-400">
+                  <div className="w-12 h-12 bg-[#1E3A8A]/30 rounded-full flex items-center justify-center mb-6 border border-[#2563EB]/20 text-[#2563EB]">
                     <Layers size={24} />
                   </div>
                   <h3 className="text-2xl font-bold mb-3 text-white">How it Works?</h3>
@@ -280,14 +281,14 @@ export default function LandingPage() {
       <footer className="relative z-10 px-6 pb-6 w-full max-w-7xl mx-auto mt-auto">
         <div className="bg-[#0a0a0a] border border-white/10 rounded-[3rem] p-8 md:p-12 overflow-hidden relative shadow-2xl">
 
-          <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-blue-600/5 rounded-full blur-[100px]"></div>
+          <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[#2563EB]/5 rounded-full blur-[100px]"></div>
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 relative z-10">
 
             {/* Brand Column */}
             <div className="md:col-span-5 space-y-8">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-white text-lg">B</div>
+                <Image src="/BaseRise.svg" alt="BaseRise Logo" width={32} height={32} className="w-8 h-8" />
                 <span className="text-2xl font-semibold tracking-tight">BaseRise</span>
               </div>
               <p className="text-gray-400 leading-relaxed max-w-sm">
@@ -296,7 +297,9 @@ export default function LandingPage() {
 
               <div className="flex gap-4">
                 <a
-                  href="#"
+                  href="https://x.com/BaseRiseOnChain"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center transition-all duration-300 group hover:bg-black hover:border-white/30 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]"
                 >
                   <svg
@@ -326,7 +329,7 @@ export default function LandingPage() {
               <ul className="space-y-4 text-gray-300">
                 {/* Only keeping Whitepaper as requested */}
                 <li>
-                  <Link href="/whitepaper" target="_blank" className="hover:text-blue-400 transition-colors">
+                  <Link href="/whitepaper" target="_blank" className="hover:text-[#2563EB] transition-colors">
                     Whitepaper
                   </Link>
                 </li>              </ul>
@@ -345,12 +348,12 @@ export default function LandingPage() {
                     value={newsEmail}
                     onChange={(e) => setNewsEmail(e.target.value)}
                     disabled={submitting}
-                    className="bg-white/5 border border-white/10 rounded-full px-5 py-3 w-full text-sm text-white focus:outline-none focus:border-blue-500/50 transition-colors shadow-inner disabled:opacity-50"
+                    className="bg-white/5 border border-white/10 rounded-full px-5 py-3 w-full text-sm text-white focus:outline-none focus:border-[#2563EB]/50 transition-colors shadow-inner disabled:opacity-50"
                   />
                   <button
                     onClick={handleNewsletterSubmit}
                     disabled={submitting}
-                    className="bg-blue-600 hover:bg-blue-500 text-white p-3 rounded-full transition-colors flex-shrink-0 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="bg-gradient-to-r from-[#2563EB] to-[#1E3A8A] hover:from-[#3B82F6] hover:to-[#2563EB] text-white p-3 rounded-full transition-colors flex-shrink-0 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {submitting ? (
                       <Loader2 size={20} className="animate-spin" />

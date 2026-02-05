@@ -97,7 +97,7 @@ export default function ErrorPage() {
             <motion.span
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="group relative flex-1 py-4 px-6 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 rounded-xl font-bold uppercase tracking-widest text-sm transition-all flex items-center justify-center gap-2 shadow-[0_0_25px_-5px_rgba(59,130,246,0.4)] hover:shadow-[0_0_35px_-5px_rgba(59,130,246,0.6)] cursor-pointer overflow-hidden"
+              className="group relative flex-1 py-4 px-6 bg-gradient-to-r from-[#2563EB] to-[#1E3A8A] hover:from-[#3B82F6] hover:to-[#2563EB] rounded-xl font-bold uppercase tracking-widest text-sm transition-all flex items-center justify-center gap-2 shadow-[0_0_25px_-5px_rgba(37,99,235,0.4)] hover:shadow-[0_0_35px_-5px_rgba(37,99,235,0.6)] cursor-pointer overflow-hidden"
             >
               <span className="relative z-10 flex items-center gap-2">
                 <RefreshCw size={18} />

@@ -171,7 +171,7 @@ export default function LookupPage() {
     return (
         <div className="min-h-screen bg-black text-white flex flex-col items-center p-6 relative overflow-hidden">
             {/* Background Ambience */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-blue-600/20 blur-[120px] rounded-full pointer-events-none" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-[#2563EB]/20 blur-[120px] rounded-full pointer-events-none" />
 
             <div className="w-full max-w-md relative z-10 my-auto">
                 <Link href="/" className="block mb-6 text-gray-500 hover:text-white transition-colors text-sm w-fit">
@@ -211,14 +211,14 @@ export default function LookupPage() {
                                                 setError(""); // Clear error when typing
                                             }}
                                             placeholder="you@example.com"
-                                            className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-10 pr-4 text-white focus:outline-none focus:border-blue-500 transition-colors"
+                                            className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-10 pr-4 text-white focus:outline-none focus:border-[#2563EB] transition-colors"
                                         />
                                     </div>
                                 </div>
                                 <button
                                     disabled={loading}
                                     type="submit"
-                                    className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="w-full bg-gradient-to-r from-[#2563EB] to-[#1E3A8A] hover:from-[#3B82F6] hover:to-[#2563EB] text-white font-bold py-3 rounded-xl transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     {loading ? <Loader2 className="animate-spin" size={20} /> : <>Send OTP <ArrowRight size={18} /></>}
                                 </button>
@@ -247,7 +247,7 @@ export default function LookupPage() {
                                     {/* ⏳ Aesthetic Timer UI */}
                                     <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border ${timeLeft < 60
                                         ? 'border-red-500/50 bg-red-500/10 text-red-400'
-                                        : 'border-blue-500/50 bg-blue-500/10 text-blue-400'
+                                        : 'border-[#2563EB]/50 bg-[#2563EB]/10 text-[#2563EB]'
                                         } transition-colors duration-300`}>
                                         <span className="text-[10px] uppercase tracking-widest font-bold">Expires in</span>
                                         <span className="font-mono font-bold text-base">{formatTime(timeLeft)}</span>
@@ -286,13 +286,13 @@ export default function LookupPage() {
                                                 onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))} // Only numbers
                                                 placeholder="000000"
                                                 disabled={timeLeft === 0}
-                                                className="w-full bg-white/5 border border-white/10 rounded-xl py-4 text-center text-3xl text-white placeholder:text-white/10 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all tracking-[0.5em] font-mono disabled:opacity-50 disabled:cursor-not-allowed"
+                                                className="w-full bg-white/5 border border-white/10 rounded-xl py-4 text-center text-3xl text-white placeholder:text-white/10 focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition-all tracking-[0.5em] font-mono disabled:opacity-50 disabled:cursor-not-allowed"
                                             />
 
                                             <button
                                                 disabled={loading || otp.length < 6 || timeLeft === 0}
                                                 type="submit"
-                                                className="w-full bg-blue-600 hover:bg-blue-500 disabled:bg-gray-800 disabled:text-gray-500 text-white font-bold py-4 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-900/20 active:scale-[0.98]"
+                                                className="w-full bg-gradient-to-r from-[#2563EB] to-[#1E3A8A] hover:from-[#3B82F6] hover:to-[#2563EB] disabled:bg-gray-800 disabled:text-gray-500 text-white font-bold py-4 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg shadow-[#1E3A8A]/20 active:scale-[0.98]"
                                             >
                                                 {loading ? (
                                                     <Loader2 className="animate-spin" size={20} />
@@ -338,7 +338,7 @@ export default function LookupPage() {
 
                                 <div className="grid grid-cols-2 gap-3">
                                     <div className="bg-white/5 border border-white/10 p-4 rounded-xl text-center">
-                                        <div className="flex justify-center mb-2 text-blue-400"><Users size={20} /></div>
+                                        <div className="flex justify-center mb-2 text-[#2563EB]"><Users size={20} /></div>
                                         <div className="text-2xl font-bold">{stats.total_referrals}</div>
                                         <div className="text-[10px] uppercase tracking-wider text-gray-500">Referrals</div>
                                     </div>
@@ -349,12 +349,12 @@ export default function LookupPage() {
                                     </div>
                                 </div>
 
-                                <div className="bg-blue-600/10 border border-blue-500/30 p-4 rounded-xl relative overflow-hidden">
-                                    <p className="text-[10px] uppercase tracking-wider text-blue-400 mb-2 font-bold">
+                                <div className="bg-[#2563EB]/10 border border-[#2563EB]/30 p-4 rounded-xl relative overflow-hidden">
+                                    <p className="text-[10px] uppercase tracking-wider text-[#2563EB] mb-2 font-bold">
                                         Your Referral Link
                                     </p>
 
-                                    <div className="flex items-center gap-2 bg-black/40 rounded-lg p-2 border border-blue-500/20">
+                                    <div className="flex items-center gap-2 bg-black/40 rounded-lg p-2 border border-[#2563EB]/20">
                                         {/* Scrollable + Selectable Input - User can manually copy too */}
                                         <input
                                             type="text"
@@ -379,14 +379,14 @@ export default function LookupPage() {
                                                 {copied ? (
                                                     <Check size={18} className="text-green-400" />
                                                 ) : (
-                                                    <Copy size={18} className="text-blue-400" />
+                                                    <Copy size={18} className="text-[#2563EB]" />
                                                 )}
                                             </button>
 
                                             {/* Tooltip - Desktop hover / shows "Copied!" on click */}
                                             <span className={`absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 rounded text-[10px] font-bold whitespace-nowrap transition-all duration-200 ${copied
-                                                    ? 'bg-green-500 text-white opacity-100 scale-100'
-                                                    : 'bg-gray-800 text-gray-300 opacity-0 group-hover/copy:opacity-100 scale-90 group-hover/copy:scale-100'
+                                                ? 'bg-green-500 text-white opacity-100 scale-100'
+                                                : 'bg-gray-800 text-gray-300 opacity-0 group-hover/copy:opacity-100 scale-90 group-hover/copy:scale-100'
                                                 }`}>
                                                 {copied ? 'Copied!' : 'Copy link'}
                                             </span>
@@ -395,7 +395,7 @@ export default function LookupPage() {
 
                                     <p className="text-[10px] text-gray-500 mt-3 text-center flex items-center justify-center gap-3">
                                         <span>Share this link to boost your rank</span>
-                                        
+
                                         {/* Twitter/X Share Button */}
                                         <motion.a
                                             href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`🚀 I just secured my spot on @BaseRise waitlist!\n\nJoin me and get early access 👇\n${typeof window !== 'undefined' ? window.location.origin : ''}/waitlist?ref=${stats.ref_code}`)}`}
@@ -456,7 +456,7 @@ export default function LookupPage() {
                             </p>
                             {error.includes("not found") || error.includes("not verified") ? (
                                 <Link href="/waitlist">
-                                    <p className="text-blue-400 hover:text-blue-300 text-xs text-center cursor-pointer underline transition-colors">
+                                    <p className="text-[#2563EB] hover:text-[#3B82F6] text-xs text-center cursor-pointer underline transition-colors">
                                         Click here to join
                                     </p>
                                 </Link>

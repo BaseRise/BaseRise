@@ -4,6 +4,7 @@ import { useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Send } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 function EarlyAccessContent() {
   const searchParams = useSearchParams()
@@ -65,16 +66,14 @@ function EarlyAccessContent() {
       </Link>
 
       <div className="flex justify-center mb-6 relative">
-        <div className="float-animation w-24 h-24 rounded-full bg-blue-600 blur-[50px] opacity-30 absolute top-[-10px]"></div>
-        <div className="relative w-16 h-16 bg-gradient-to-br from-blue-600 to-indigo-800 rounded-2xl rotate-12 flex items-center justify-center shadow-2xl border border-white/20 z-20">
-          <span className="text-3xl font-black -rotate-12 text-white">B</span>
-        </div>
+        <div className="float-animation w-24 h-24 rounded-full bg-[#2563EB] blur-[50px] opacity-30 absolute top-[-10px]"></div>
+        <Image src="/BaseRise.svg" alt="BaseRise Logo" width={64} height={64} className="relative w-16 h-16 z-20" />
       </div>
 
       <div className="animate-in fade-in duration-700 w-full">
         <div className="space-y-4 mb-8">
           <h1 className="text-5xl md:text-8xl font-black tracking-tighter leading-[0.85] uppercase text-white">
-            Join the<br /> <span className="text-blue-600">Waitlist</span>
+            Join the<br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563EB] to-[#1E3A8A]">Waitlist</span>
           </h1>
           <p className="text-gray-400 text-base md:text-xl max-w-xl mx-auto font-medium opacity-80 leading-snug">
             <br />
@@ -82,27 +81,27 @@ function EarlyAccessContent() {
           </p>
         </div>
         <div className="max-w-md mx-auto px-4">
-          <form onSubmit={handleSubmit} className="input-container p-1.5 rounded-2xl flex flex-col md:flex-row items-center gap-2 md:gap-0 bg-white/5 border border-white/10 hover:border-blue-500/30 transition-all duration-300 hover:shadow-[0_0_40px_-15px_rgba(59,130,246,0.3)]">
+          <form onSubmit={handleSubmit} className="input-container p-1.5 rounded-2xl flex flex-col md:flex-row items-center gap-2 md:gap-0 bg-white/5 border border-white/10 hover:border-[#2563EB]/30 transition-all duration-300 hover:shadow-[0_0_40px_-15px_rgba(37,99,235,0.3)]">
             <input type="email" required placeholder="Enter your email" className="bg-transparent border-none outline-none flex-1 px-5 py-3 text-white placeholder:text-gray-600 font-semibold w-full text-sm" value={email} onChange={(e) => setEmail(e.target.value)} />
             <button type="submit" disabled={status === 'loading'} className="group relative btn-shimmer cursor-pointer disabled:cursor-not-allowed w-full md:w-auto px-8 py-3 rounded-xl font-black text-xs uppercase tracking-widest text-white disabled:opacity-50 transition-all duration-300 hover:shadow-[0_0_30px_-5px_rgba(0,82,255,0.6)] hover:scale-[1.02] active:scale-[0.98] overflow-hidden">
               <span className="relative z-10">{status === 'loading' ? 'Securing...' : 'Secure Spot'}</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 animate-shimmer-sweep" />
             </button>
           </form>
           <div className="mt-8 flex flex-col items-center gap-6">
             <div className="flex items-center gap-3">
               <div className="flex -space-x-2">
                 <div className="w-6 h-6 rounded-full border border-black bg-gray-800"></div>
-                <div className="w-6 h-6 rounded-full border border-black bg-blue-900"></div>
+                <div className="w-6 h-6 rounded-full border border-black bg-[#1E3A8A]"></div>
                 <div className="w-6 h-6 rounded-full border border-black bg-indigo-900"></div>
               </div>
               <p className="text-[9px] md:text-xs text-gray-500 uppercase tracking-widest font-bold opacity-60 italic">SECURE YOUR SPOT</p>
             </div>
             <div className="flex flex-col items-center gap-3">
-              <h3 className="text-blue-500 font-black text-[10px] tracking-[0.3em] italic uppercase opacity-80">Socials</h3>
+              <h3 className="text-[#2563EB] font-black text-[10px] tracking-[0.3em] italic uppercase opacity-80">Socials</h3>
               <div className="flex items-center justify-center gap-4">
                 {/* X (Twitter) Icon - Black hover with white glow */}
-                <a href="#" className="group relative w-12 h-12 flex items-center justify-center rounded-2xl bg-[#121212] border border-white/5 transition-all duration-300 ease-out hover:bg-black hover:scale-110 hover:border-white/30 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] cursor-pointer">
+                <a href="https://x.com/BaseRiseOnChain" target="_blank" rel="noopener noreferrer" className="group relative w-12 h-12 flex items-center justify-center rounded-2xl bg-[#121212] border border-white/5 transition-all duration-300 ease-out hover:bg-black hover:scale-110 hover:border-white/30 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] cursor-pointer">
                   <svg viewBox="0 0 24 24" className="w-5 h-5 text-gray-400 fill-current group-hover:text-white transition-colors duration-300"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
                 </a>
                 {/* Discord Icon - Purple hover */}

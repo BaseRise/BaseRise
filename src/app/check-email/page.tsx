@@ -133,7 +133,7 @@ function CheckEmailContent() {
     <div className="relative min-h-screen flex items-center justify-center bg-[#030303] text-white overflow-hidden font-sans px-4">
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className={`absolute top-[-20%] left-[-10%] w-[50%] h-[50%] ${isVerified ? 'bg-green-600/15' : 'bg-blue-600/15'} blur-[150px] rounded-full animate-pulse`} />
+        <div className={`absolute top-[-20%] left-[-10%] w-[50%] h-[50%] ${isVerified ? 'bg-green-600/15' : 'bg-[#2563EB]/15'} blur-[150px] rounded-full animate-pulse`} />
         <div className={`absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] ${isVerified ? 'bg-emerald-600/15' : 'bg-purple-600/15'} blur-[150px] rounded-full animate-pulse`} style={{ animationDelay: '1s' }} />
         <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40%] h-[40%] ${isVerified ? 'bg-green-600/10' : 'bg-indigo-600/10'} blur-[120px] rounded-full animate-pulse`} style={{ animationDelay: '2s' }} />
       </div>
@@ -142,7 +142,7 @@ function CheckEmailContent() {
       {[...Array(6)].map((_, i) => (
         <motion.div
           key={i}
-          className={`absolute w-1 h-1 ${isVerified ? 'bg-green-400/40' : 'bg-blue-400/40'} rounded-full`}
+          className={`absolute w-1 h-1 ${isVerified ? 'bg-green-400/40' : 'bg-[#2563EB]/40'} rounded-full`}
           initial={{ opacity: 0 }}
           animate={{
             opacity: [0, 1, 0],
@@ -294,140 +294,140 @@ function CheckEmailContent() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="relative z-10 max-w-md w-full p-8 md:p-10 text-center backdrop-blur-2xl bg-white/[0.03] border border-white/10 rounded-[2.5rem] shadow-2xl"
           >
-        {/* Icon with Animation */}
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
-          className="relative w-24 h-24 mx-auto mb-8"
-        >
-          <div className="absolute inset-0 bg-blue-600/20 rounded-full blur-xl animate-pulse" />
-          <div className="relative w-full h-full bg-gradient-to-br from-blue-600/30 to-purple-600/30 rounded-full flex items-center justify-center border border-blue-500/30">
-            <Mail className="text-blue-400" size={36} />
-          </div>
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-            className="absolute -top-1 -right-1"
-          >
-            <Sparkles className="text-yellow-400" size={20} />
-          </motion.div>
-        </motion.div>
-
-        {/* Title */}
-        <motion.h2
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="text-3xl md:text-4xl font-black uppercase italic tracking-tighter mb-3"
-        >
-          Verify Your <span className="text-blue-400">Mail</span>
-        </motion.h2>
-
-        {/* Alert Message */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="flex items-center justify-center gap-2 mb-6 px-4 py-2 bg-yellow-500/10 border border-yellow-500/20 rounded-full"
-        >
-          <Shield size={14} className="text-yellow-400" />
-          <p className="text-xs font-bold uppercase tracking-wider text-yellow-400">
-            Please verify your mail first
-          </p>
-        </motion.div>
-
-        {/* Email Display */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="text-gray-400 text-sm mb-4 leading-relaxed"
-        >
-          We sent a secure confirmation link to<br />
-          <span className="text-white font-bold text-base">{email}</span>
-        </motion.p>
-
-        {/* Spam Notice */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-          className="flex items-center gap-2 px-4 py-2.5 mb-8 bg-orange-500/10 border border-orange-500/20 rounded-xl"
-        >
-          <span className="text-orange-400 text-lg">📬</span>
-          <p className="text-xs text-orange-300/90 font-medium">
-            Can't find it? Please check your <span className="font-bold text-orange-400">Spam</span> or <span className="font-bold text-orange-400">Junk</span> folder
-          </p>
-        </motion.div>
-
-        {/* Timer */}
-        <AnimatePresence mode="wait">
-          {!isExpired ? (
+            {/* Icon with Animation */}
             <motion.div
-              key="timer"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              className="flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-2xl border border-white/10 mb-8"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
+              className="relative w-24 h-24 mx-auto mb-8"
             >
-              <Clock size={20} className="text-blue-400" />
-              <div className="text-left">
-                <p className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Link Expires In</p>
-                <p className="text-2xl font-mono font-black tracking-widest text-blue-400">
-                  {formatTime(timeLeft)}
+              <div className="absolute inset-0 bg-[#2563EB]/20 rounded-full blur-xl animate-pulse" />
+              <div className="relative w-full h-full bg-gradient-to-br from-[#2563EB]/30 to-[#1E3A8A]/30 rounded-full flex items-center justify-center border border-[#2563EB]/30">
+                <Mail className="text-[#2563EB]" size={36} />
+              </div>
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                className="absolute -top-1 -right-1"
+              >
+                <Sparkles className="text-yellow-400" size={20} />
+              </motion.div>
+            </motion.div>
+
+            {/* Title */}
+            <motion.h2
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="text-3xl md:text-4xl font-black uppercase italic tracking-tighter mb-3"
+            >
+              Verify Your <span className="text-[#2563EB]">Mail</span>
+            </motion.h2>
+
+            {/* Alert Message */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="flex items-center justify-center gap-2 mb-6 px-4 py-2 bg-yellow-500/10 border border-yellow-500/20 rounded-full"
+            >
+              <Shield size={14} className="text-yellow-400" />
+              <p className="text-xs font-bold uppercase tracking-wider text-yellow-400">
+                Please verify your mail first
+              </p>
+            </motion.div>
+
+            {/* Email Display */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="text-gray-400 text-sm mb-4 leading-relaxed"
+            >
+              We sent a secure confirmation link to<br />
+              <span className="text-white font-bold text-base">{email}</span>
+            </motion.p>
+
+            {/* Spam Notice */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="flex items-center gap-2 px-4 py-2.5 mb-8 bg-orange-500/10 border border-orange-500/20 rounded-xl"
+            >
+              <span className="text-orange-400 text-lg">📬</span>
+              <p className="text-xs text-orange-300/90 font-medium">
+                Can't find it? Please check your <span className="font-bold text-orange-400">Spam</span> or <span className="font-bold text-orange-400">Junk</span> folder
+              </p>
+            </motion.div>
+
+            {/* Timer */}
+            <AnimatePresence mode="wait">
+              {!isExpired ? (
+                <motion.div
+                  key="timer"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  className="flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-[#2563EB]/10 to-[#1E3A8A]/10 rounded-2xl border border-white/10 mb-8"
+                >
+                  <Clock size={20} className="text-[#2563EB]" />
+                  <div className="text-left">
+                    <p className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Link Expires In</p>
+                    <p className="text-2xl font-mono font-black tracking-widest text-[#2563EB]">
+                      {formatTime(timeLeft)}
+                    </p>
+                  </div>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="expired"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="flex flex-col items-center gap-4 px-6 py-4 bg-red-600/10 rounded-2xl border border-red-500/20 mb-8"
+                >
+                  <div className="flex items-center gap-3">
+                    <AlertTriangle size={20} className="text-red-400" />
+                    <div className="text-left">
+                      <p className="text-[10px] uppercase tracking-widest text-red-400 font-bold">Link Expired</p>
+                      <p className="text-sm text-gray-400">Please request a new verification email</p>
+                    </div>
+                  </div>
+                  <Link
+                    href="/"
+                    onClick={handleTryAgain}
+                  >
+                    <motion.span
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#2563EB] to-[#1E3A8A] hover:from-[#3B82F6] hover:to-[#2563EB] rounded-full font-bold uppercase text-sm tracking-wider transition-all duration-300 shadow-[0_0_20px_-5px_rgba(37,99,235,0.5)] hover:shadow-[0_0_30px_-5px_rgba(37,99,235,0.7)] cursor-pointer"
+                    >
+                      <RefreshCw size={16} />
+                      Try Again
+                    </motion.span>
+                  </Link>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Waiting Status */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7 }}
+              className="pt-6 border-t border-white/5"
+            >
+              <div className="flex items-center justify-center gap-2 text-gray-500">
+                <Loader2 size={14} className="animate-spin text-[#2563EB]" />
+                <p className="text-xs uppercase tracking-widest font-bold">
+                  Waiting for confirmation...
                 </p>
               </div>
+              <p className="text-[10px] text-gray-600 mt-2">
+                This page will automatically update once verified
+              </p>
             </motion.div>
-          ) : (
-            <motion.div
-              key="expired"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="flex flex-col items-center gap-4 px-6 py-4 bg-red-600/10 rounded-2xl border border-red-500/20 mb-8"
-            >
-              <div className="flex items-center gap-3">
-                <AlertTriangle size={20} className="text-red-400" />
-                <div className="text-left">
-                  <p className="text-[10px] uppercase tracking-widest text-red-400 font-bold">Link Expired</p>
-                  <p className="text-sm text-gray-400">Please request a new verification email</p>
-                </div>
-              </div>
-              <Link
-                href="/"
-                onClick={handleTryAgain}
-              >
-                <motion.span
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 rounded-full font-bold uppercase text-sm tracking-wider transition-all duration-300 shadow-[0_0_20px_-5px_rgba(59,130,246,0.5)] hover:shadow-[0_0_30px_-5px_rgba(59,130,246,0.7)] cursor-pointer"
-                >
-                  <RefreshCw size={16} />
-                  Try Again
-                </motion.span>
-              </Link>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Waiting Status */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.7 }}
-          className="pt-6 border-t border-white/5"
-        >
-          <div className="flex items-center justify-center gap-2 text-gray-500">
-            <Loader2 size={14} className="animate-spin text-blue-400" />
-            <p className="text-xs uppercase tracking-widest font-bold">
-              Waiting for confirmation...
-            </p>
-          </div>
-          <p className="text-[10px] text-gray-600 mt-2">
-            This page will automatically update once verified
-          </p>
-        </motion.div>
-      </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
     </div>

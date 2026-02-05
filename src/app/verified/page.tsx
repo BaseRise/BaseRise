@@ -90,7 +90,7 @@ export default function VerifiedSuccess() {
         // Store email in localStorage for ref-code page (secure, no URL exposure)
         localStorage.setItem('baserise_verified_email', userEmail)
         setStatus('success')
-        
+
         // Auto redirect to ref-code page after showing success briefly
         setTimeout(() => {
           router.push('/ref-code')
@@ -109,7 +109,7 @@ export default function VerifiedSuccess() {
     <div className="min-h-screen flex items-center justify-center bg-[#030303] text-white font-sans overflow-hidden px-4 relative">
 
       {/* Background Gradients */}
-      <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-blue-600/20 blur-[120px] rounded-full mix-blend-screen" />
+      <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-[#2563EB]/20 blur-[120px] rounded-full mix-blend-screen" />
       <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-purple-600/20 blur-[120px] rounded-full mix-blend-screen" />
 
       <AnimatePresence mode="wait">
@@ -118,10 +118,10 @@ export default function VerifiedSuccess() {
         {status === 'verifying' && (
           <motion.div key="loading" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="text-center z-10">
             <div className="relative w-16 h-16 mx-auto mb-6">
-              <div className="absolute inset-0 border-t-2 border-blue-500 rounded-full animate-spin" />
+              <div className="absolute inset-0 border-t-2 border-[#2563EB] rounded-full animate-spin" />
               <div className="absolute inset-2 border-t-2 border-purple-500 rounded-full animate-spin direction-reverse" />
             </div>
-            <p className="uppercase tracking-[0.2em] text-xs font-bold text-blue-400/80">Securing Connection...</p>
+            <p className="uppercase tracking-[0.2em] text-xs font-bold text-[#2563EB]/80">Securing Connection...</p>
           </motion.div>
         )}
 
@@ -135,12 +135,12 @@ export default function VerifiedSuccess() {
             className="relative z-10 max-w-md w-full p-1 bg-gradient-to-b from-white/10 to-white/5 rounded-[2rem] border border-white/10 shadow-2xl backdrop-blur-2xl"
           >
             <div className="bg-[#0A0A0A]/90 rounded-[1.9rem] p-8 text-center h-full">
-              <div className="w-20 h-20 mx-auto mb-6 bg-blue-500/10 rounded-2xl flex items-center justify-center border border-blue-500/20 shadow-[0_0_30px_-5px_rgba(59,130,246,0.3)]">
-                <ShieldCheck size={40} className="text-blue-500" />
+              <div className="w-20 h-20 mx-auto mb-6 bg-[#2563EB]/10 rounded-2xl flex items-center justify-center border border-[#2563EB]/20 shadow-[0_0_30px_-5px_rgba(37,99,235,0.3)]">
+                <ShieldCheck size={40} className="text-[#2563EB]" />
               </div>
 
               <h1 className="text-3xl font-black uppercase italic tracking-tighter mb-3">
-                Finalize <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Access</span>
+                Finalize <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563EB] to-[#1E3A8A]">Access</span>
               </h1>
               <p className="text-gray-400 text-sm mb-8 leading-relaxed">
                 Your email is confirmed. Click below to cryptographically link your identity to the waitlist.
@@ -151,7 +151,7 @@ export default function VerifiedSuccess() {
                 whileTap={{ scale: 0.98 }}
                 onClick={handleFinalize}
                 disabled={isUpdating}
-                className="group relative w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 rounded-xl font-black uppercase tracking-widest text-sm transition-all shadow-[0_0_25px_-5px_rgba(37,99,235,0.5)] hover:shadow-[0_0_40px_-5px_rgba(37,99,235,0.7)] disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden cursor-pointer"
+                className="group relative w-full py-4 bg-gradient-to-r from-[#2563EB] to-[#1E3A8A] hover:from-[#3B82F6] hover:to-[#2563EB] rounded-xl font-black uppercase tracking-widest text-sm transition-all shadow-[0_0_25px_-5px_rgba(37,99,235,0.5)] hover:shadow-[0_0_40px_-5px_rgba(37,99,235,0.7)] disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden cursor-pointer"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   {isUpdating ? <Loader2 className="animate-spin" /> : <>Initialize BaseRise<ArrowRight size={16} /></>}
@@ -243,14 +243,14 @@ export default function VerifiedSuccess() {
             key="already"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="relative z-10 max-w-md w-full p-8 text-center bg-black/40 backdrop-blur-xl rounded-[2rem] border border-blue-500/20"
+            className="relative z-10 max-w-md w-full p-8 text-center bg-black/40 backdrop-blur-xl rounded-[2rem] border border-[#2563EB]/20"
           >
-            <div className="w-20 h-20 mx-auto mb-6 bg-blue-500/10 rounded-full flex items-center justify-center border border-blue-500/20">
-              <Lock size={40} className="text-blue-400" />
+            <div className="w-20 h-20 mx-auto mb-6 bg-[#2563EB]/10 rounded-full flex items-center justify-center border border-[#2563EB]/20">
+              <Lock size={40} className="text-[#2563EB]" />
             </div>
             <h1 className="text-2xl font-black uppercase italic tracking-tight text-white mb-2">Already Verified</h1>
             <p className="text-gray-400 text-sm mb-6">You have already verified your spot.</p>
-            <Link href="/ref-code" className="group text-blue-400 text-xs font-bold uppercase tracking-widest hover:text-blue-300 transition-all duration-300 border-b border-blue-500/30 hover:border-blue-400/50 pb-1 cursor-pointer inline-flex items-center gap-1">
+            <Link href="/ref-code" className="group text-[#2563EB] text-xs font-bold uppercase tracking-widest hover:text-[#3B82F6] transition-all duration-300 border-b border-[#2563EB]/30 hover:border-[#2563EB]/50 pb-1 cursor-pointer inline-flex items-center gap-1">
               View Your Dashboard
               <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
             </Link>

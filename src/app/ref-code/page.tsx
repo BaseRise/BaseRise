@@ -119,7 +119,7 @@ function RefCodeContent() {
   }
 
   // Loading State
-  if (loading) return <div className="min-h-screen flex items-center justify-center bg-[#030303]"><Loader2 className="animate-spin text-blue-500" /></div>
+  if (loading) return <div className="min-h-screen flex items-center justify-center bg-[#030303]"><Loader2 className="animate-spin text-[#2563EB]" /></div>
 
   // 🔒 Auth Error - User not logged in
   if (authError) {
@@ -139,7 +139,7 @@ function RefCodeContent() {
             <motion.span
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl text-xs font-bold uppercase tracking-widest cursor-pointer"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#2563EB] to-[#1E3A8A] rounded-xl text-xs font-bold uppercase tracking-widest cursor-pointer"
             >
               Join Waitlist
               <ArrowRight size={14} />
@@ -155,7 +155,7 @@ function RefCodeContent() {
 
       {/* Dynamic Background */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-[10%] left-[20%] w-96 h-96 bg-blue-600/10 blur-[100px] rounded-full animate-pulse" />
+        <div className="absolute top-[10%] left-[20%] w-96 h-96 bg-[#2563EB]/10 blur-[100px] rounded-full animate-pulse" />
         <div className="absolute bottom-[10%] right-[20%] w-96 h-96 bg-indigo-600/10 blur-[100px] rounded-full animate-pulse delay-1000" />
       </div>
 
@@ -171,7 +171,7 @@ function RefCodeContent() {
             <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-green-500">Spot Secured</span>
           </div>
           <h1 className="text-4xl md:text-5xl font-black uppercase italic tracking-tighter mb-2">
-            You're on the <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">List</span>
+            You're on the <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563EB] to-[#1E3A8A]">List</span>
           </h1>
           <p className="text-gray-400 text-sm">Boost your position by inviting friends.</p>
         </div>
@@ -185,14 +185,14 @@ function RefCodeContent() {
               <label className="text-[10px] font-bold uppercase tracking-widest text-gray-500 ml-1">Your Access Code</label>
               <div
                 onClick={copyToClipboard}
-                className="group cursor-pointer relative bg-black/50 border border-white/10 hover:border-blue-500/50 rounded-xl p-6 text-center transition-all duration-300"
+                className="group cursor-pointer relative bg-black/50 border border-white/10 hover:border-[#2563EB]/50 rounded-xl p-6 text-center transition-all duration-300"
               >
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500 opacity-20 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#2563EB] to-[#1E3A8A] opacity-20 group-hover:opacity-100 transition-opacity" />
                 <p className="text-3xl md:text-4xl font-mono font-black tracking-[0.2em] text-white group-hover:scale-105 transition-transform">
                   {refCode || '....'}
                 </p>
                 <div className="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity">
-                  {copied ? <Check size={20} className="text-green-500" /> : <Copy size={20} className="text-blue-500" />}
+                  {copied ? <Check size={20} className="text-green-500" /> : <Copy size={20} className="text-[#2563EB]" />}
                 </div>
               </div>
             </div>
@@ -201,10 +201,10 @@ function RefCodeContent() {
             <div className="grid grid-cols-2 gap-4">
               <motion.div
                 whileHover={{ scale: 1.02, borderColor: 'rgba(59, 130, 246, 0.3)' }}
-                className="group p-5 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-2xl border border-white/10 flex flex-col items-center justify-center gap-2 cursor-default transition-all duration-300 hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)]"
+                className="group p-5 bg-gradient-to-br from-[#2563EB]/5 to-[#1E3A8A]/5 rounded-2xl border border-white/10 flex flex-col items-center justify-center gap-2 cursor-default transition-all duration-300 hover:shadow-[0_0_30px_-10px_rgba(37,99,235,0.3)]"
               >
-                <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Users size={20} className="text-blue-400" />
+                <div className="w-10 h-10 rounded-xl bg-[#2563EB]/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Users size={20} className="text-[#2563EB]" />
                 </div>
                 <span className="text-3xl font-black bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">{referralCount}</span>
                 <span className="text-[10px] uppercase tracking-widest text-gray-500">Referrals</span>
@@ -239,7 +239,7 @@ function RefCodeContent() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={copyToClipboard}
-                className="group relative flex-1 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 rounded-xl font-bold uppercase text-xs tracking-wider transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_-5px_rgba(59,130,246,0.5)] hover:shadow-[0_0_30px_-5px_rgba(59,130,246,0.7)] overflow-hidden cursor-pointer"
+                className="group relative flex-1 py-4 bg-gradient-to-r from-[#2563EB] to-[#1E3A8A] hover:from-[#3B82F6] hover:to-[#2563EB] rounded-xl font-bold uppercase text-xs tracking-wider transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_-5px_rgba(37,99,235,0.5)] hover:shadow-[0_0_30px_-5px_rgba(37,99,235,0.7)] overflow-hidden cursor-pointer"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   {copied ? <><Check size={16} /> Copied!</> : <><LinkIcon size={16} /> Copy Link</>}

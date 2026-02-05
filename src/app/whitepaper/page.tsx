@@ -15,7 +15,7 @@ const Scene3D = dynamic(() => import('./Scene3D'), {
 
 export default function Whitepaper() {
     return (
-        <div className="min-h-screen bg-[#050505] text-gray-300 font-sans selection:bg-blue-600 selection:text-white overflow-x-hidden">
+        <div className="min-h-screen bg-[#050505] text-gray-300 font-sans selection:bg-[#2563EB] selection:text-white overflow-x-hidden">
 
             {/* =========================================
           NEW: 3D BACKGROUND SCENE
@@ -38,7 +38,7 @@ export default function Whitepaper() {
                     </button>
 
                     <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 bg-blue-600 rounded-md flex items-center justify-center font-bold text-white text-xs">B</div>
+                        <div className="w-6 h-6 bg-gradient-to-r from-[#2563EB] to-[#1E3A8A] rounded-md flex items-center justify-center font-bold text-white text-xs">B</div>
                         <span className="font-semibold tracking-tight text-white">
                             Whitepaper <span className="text-gray-500 text-xs font-normal ml-1">v1.0</span>
                         </span>
@@ -54,12 +54,12 @@ export default function Whitepaper() {
                     animate={{ opacity: 1, y: 0 }}
                     className="mb-16 border-b border-white/10 pb-10 p-6 bg-[#050505]/40 backdrop-blur-xl rounded-3xl border border-white/5 shadow-2xl"
                 >
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest mb-6">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1E3A8A]/20 border border-[#2563EB]/20 text-[#2563EB] text-xs font-bold uppercase tracking-widest mb-6">
                         BaseRise Protocol
                     </div>
                     <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
                         Democratizing Access to the <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Base Ecosystem.</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563EB] to-[#1E3A8A]">Base Ecosystem.</span>
                     </h1>
                     <p className="text-lg text-gray-200 leading-relaxed drop-shadow-md">
                         A decentralized launchpad designed to empower the community with guaranteed allocations, verified security, and automated participation on the Base L2 network.
@@ -72,7 +72,7 @@ export default function Whitepaper() {
                     {/* Section 1: Abstract */}
                     <section>
                         <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                            <FileText size={20} className="text-blue-500" /> 1. Abstract
+                            <FileText size={20} className="text-[#2563EB]" /> 1. Abstract
                         </h2>
                         <p className="leading-7 mb-4">
                             The DeFi landscape is evolving, but early-stage investment opportunities remain inaccessible to the average user. High gas fees on Ethereum and the prevalence of "rug pulls" have created a barrier to entry.
@@ -87,7 +87,7 @@ export default function Whitepaper() {
                         <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
                             <AlertCircle size={20} className="text-red-400" /> 2. The Current Problems
                         </h2>
-                        <ul className="list-disc pl-5 space-y-3 text-gray-400 marker:text-blue-500">
+                        <ul className="list-disc pl-5 space-y-3 text-gray-400 marker:text-[#2563EB]">
                             <li><strong>Exclusive Access:</strong> Most launchpads are dominated by whales (large holders), leaving retail investors with dust.</li>
                             <li><strong>Security Risks:</strong> The lack of rigorous vetting allows malicious projects to drain user funds.</li>
                             <li><strong>Complexity:</strong> Manual claiming and staking processes are confusing for newcomers.</li>
@@ -124,7 +124,7 @@ export default function Whitepaper() {
                         </p>
                         <div className="space-y-4 mt-6 border-l-2 border-white/10 pl-6">
                             <div className="relative">
-                                <div className="absolute -left-[31px] top-1 w-4 h-4 bg-blue-600 rounded-full border-4 border-[#050505]"></div>
+                                <div className="absolute -left-[31px] top-1 w-4 h-4 bg-[#2563EB] rounded-full border-4 border-[#050505]"></div>
                                 <h4 className="text-white font-bold">Q1 2026: Foundation</h4>
                                 <p className="text-sm text-gray-500">Waitlist Launch, Community Formation, Initial Partnerships.</p>
                             </div>

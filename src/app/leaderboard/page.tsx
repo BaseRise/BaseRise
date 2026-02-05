@@ -20,7 +20,7 @@ export default async function LeaderboardPage() {
     return (
         <div className="min-h-screen bg-[#050505] text-white p-6 md:p-10 font-sans relative">
             {/* Background Glows */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#2563EB]/10 rounded-full blur-[120px] pointer-events-none"></div>
 
             <div className="max-w-4xl mx-auto relative z-10">
                 {/* Header */}
@@ -28,17 +28,17 @@ export default async function LeaderboardPage() {
                     <Link href="/" className="self-start text-gray-500 hover:text-white flex items-center gap-2 mb-8 transition-colors">
                         <ArrowLeft size={20} /> Back to Home
                     </Link>
-                    <div className="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mb-4 border border-blue-500/30">
-                        <Trophy className="text-blue-500" size={32} />
+                    <div className="w-16 h-16 bg-[#2563EB]/20 rounded-2xl flex items-center justify-center mb-4 border border-[#2563EB]/30">
+                        <Trophy className="text-[#2563EB]" size={32} />
                     </div>
                     <h1 className="text-4xl md:text-5xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500  tracking-tighter">
                         BaseRise Top 100
                     </h1>
                     <p className="text-gray-500 mt-2 font-mono uppercase tracking-[0.2em] text-sm">Elite Referral Program</p>
                     <div className="mt-4 flex items-center gap-2 px-4 py-1.5 bg-white/5 border border-white/10 rounded-full">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                        <div className="w-2 h-2 bg-[#2563EB] rounded-full animate-pulse"></div>
                         <p className="text-[10px] md:text-xs text-gray-400 font-medium tracking-wide uppercase">
-                            For best experience, use <span className="text-blue-400">Laptop or PC</span>
+                            For best experience, use <span className="text-[#2563EB]">Laptop or PC</span>
                         </p>
                     </div>
                 </div>
@@ -58,11 +58,11 @@ export default async function LeaderboardPage() {
                         </thead>
                         <tbody className="divide-y divide-white/5">
                             {leaderboard?.map((user) => (
-                                <tr key={user.ref_code} className="hover:bg-blue-600/[0.03] transition-colors group">
+                                <tr key={user.ref_code} className="hover:bg-[#2563EB]/[0.03] transition-colors group">
                                     <td className="p-6">
                                         <span className={`font-bold text-lg ${user.current_rank === 1 ? 'text-yellow-500' :
                                             user.current_rank === 2 ? 'text-gray-400' :
-                                                user.current_rank === 3 ? 'text-amber-600' : 'text-blue-400'
+                                                user.current_rank === 3 ? 'text-amber-600' : 'text-[#2563EB]'
                                             }`}>
                                             #{user.current_rank}
                                         </span>
