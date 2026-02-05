@@ -24,7 +24,7 @@ export default function Whitepaper() {
             <Scene3D />
 
             {/* Navbar (Simplified) */}
-      // Navbar Section inside whitepaper/page.tsx
+            {/* // Navbar Section inside whitepaper/page.tsx  */}
 
             <nav className="fixed top-0 w-full z-50 border-b border-white/5 bg-[#050505]/80 backdrop-blur-md">
                 <div className="max-w-4xl mx-auto px-6 h-16 flex justify-between items-center">
