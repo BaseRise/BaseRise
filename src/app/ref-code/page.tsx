@@ -1,6 +1,6 @@
 'use client'
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { useState, useEffect, useCallback } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Copy, Check, Users, Share2, Loader2, ArrowRight, Trophy, Link as LinkIcon, Zap, ShieldAlert, X } from 'lucide-react'
 import { supabase } from '@/app/lib/supabase'
 import Link from 'next/link'
@@ -13,6 +13,7 @@ function RefCodeContent() {
   const [authError, setAuthError] = useState(false)
   const [referralCount, setReferralCount] = useState(0)
   const [position, setPosition] = useState<number | null>(null)
+  const [showCloseHint, setShowCloseHint] = useState(false)
 
   // 🔒 100% SECURE: Get email from Supabase Auth Session (tamper-proof)
   useEffect(() => {
@@ -109,6 +110,49 @@ function RefCodeContent() {
     fetchUserData()
   }, [email])
 
+  // Repeating "close this tab" hint animation
+  useEffect(() => {
+    if (loading || authError) return
+    let showTimer: NodeJS.Timeout
+    let hideTimer: NodeJS.Timeout
+    let interval: NodeJS.Timeout
+
+    const startCycle = () => {
+      showTimer = setTimeout(() => {
+        setShowCloseHint(true)
+        hideTimer = setTimeout(() => {
+          setShowCloseHint(false)
+        }, 3000)
+      }, 5000)
+    }
+
+    // First cycle
+    startCycle()
+
+    // Repeat every 8s (5s wait + 3s show)
+    interval = setInterval(() => {
+      setShowCloseHint(true)
+      hideTimer = setTimeout(() => {
+        setShowCloseHint(false)
+      }, 3000)
+    }, 8000)
+
+    return () => {
+      clearTimeout(showTimer)
+      clearTimeout(hideTimer)
+      clearInterval(interval)
+    }
+  }, [loading, authError])
+
+  const handleCloseTab = useCallback(() => {
+    window.close()
+    // Fallback: if window.close() doesn't work (browser restriction)
+    // Navigate to about:blank or show message
+    setTimeout(() => {
+      window.location.href = 'about:blank'
+    }, 300)
+  }, [])
+
   const referralLink = refCode ? `${typeof window !== 'undefined' ? window.location.origin : ''}/waitlist?ref=${refCode}` : ''
 
   const copyToClipboard = async () => {
@@ -159,11 +203,52 @@ function RefCodeContent() {
         <div className="absolute bottom-[10%] right-[20%] w-96 h-96 bg-indigo-600/10 blur-[100px] rounded-full animate-pulse delay-1000" />
       </div>
 
+      {/* Close Tab Hint Toast - Floating at bottom center */}
+      <AnimatePresence>
+        {showCloseHint && (
+          <motion.div
+            initial={{ opacity: 0, y: 30, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50"
+          >
+            <div className="px-6 py-3 bg-white/10 backdrop-blur-2xl border border-white/20 rounded-full shadow-[0_0_40px_-10px_rgba(37,99,235,0.4)] flex items-center gap-3">
+              <motion.div
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ repeat: Infinity, duration: 1.5 }}
+                className="w-2 h-2 bg-[#2563EB] rounded-full"
+              />
+              <span className="text-sm font-medium text-gray-200 whitespace-nowrap">You can close this tab now</span>
+              <button
+                onClick={handleCloseTab}
+                className="ml-1 px-3 py-1 bg-white/10 hover:bg-white/20 rounded-full text-[10px] font-bold uppercase tracking-wider text-white transition-all cursor-pointer"
+              >
+                Close
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         className="relative z-10 w-full max-w-lg"
       >
+        {/* Close Tab Button - Top Right */}
+        <div className="flex justify-end mb-4">
+          <motion.button
+            onClick={handleCloseTab}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest text-gray-500 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all duration-300 cursor-pointer group"
+          >
+            <X size={12} className="group-hover:rotate-90 transition-transform duration-300" />
+            <span>Close</span>
+          </motion.button>
+        </div>
+
         {/* Header Section */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-green-500/10 border border-green-500/20 rounded-full mb-6">
@@ -269,23 +354,7 @@ function RefCodeContent() {
           </div>
         </div>
 
-        {/* Close Button */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="mt-8 text-center"
-        >
-          <motion.button
-            onClick={() => window.close()}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-white bg-white/0 hover:bg-white/5 border border-transparent hover:border-white/10 transition-all duration-300 cursor-pointer group"
-          >
-            <X size={14} />
-            <span>Close This Page</span>
-          </motion.button>
-        </motion.div>
+
 
       </motion.div>
     </div>

@@ -1,11 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { motion, AnimatePresence } from "framer-motion";
-import { Loader2, Mail, Lock, ArrowRight, Trophy, Users, Star, Copy, Check } from "lucide-react";
+import { Loader2, Mail, Lock, ArrowRight, Trophy, Users, Star, Copy, Check, Wallet, CheckCircle2, AlertCircle } from "lucide-react";
 import { FaWhatsapp, FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
+import { ConnectWalletButton } from "@/components/web3/ConnectWalletButton";
+import { useAccount } from "wagmi";
 
 // Supabase Client (Frontend wala)
 const supabase = createClient(
@@ -23,6 +25,15 @@ export default function LookupPage() {
     const [error, setError] = useState("");
     const [stats, setStats] = useState<any>(null);
     const [copied, setCopied] = useState(false);
+
+    // Wallet connection status
+    const { isConnected, address } = useAccount();
+
+    // Wallet DB state
+    const [savedWallet, setSavedWallet] = useState<string | null>(null);
+    const [walletSaving, setWalletSaving] = useState(false);
+    const [walletError, setWalletError] = useState<string | null>(null);
+    const [walletSuccess, setWalletSuccess] = useState(false);
 
     // 🧠 Logic: Timer Functionality
     useEffect(() => {
@@ -117,6 +128,9 @@ export default function LookupPage() {
 
             setStats(userStats[0]); // Data set karo
             setStep("RESULT"); // Result dikhao
+
+            // Fetch saved wallet from DB when stats load
+            fetchSavedWallet();
         } catch (err: any) {
             setError(err.message);
         } finally {
@@ -168,15 +182,96 @@ export default function LookupPage() {
         document.body.removeChild(textArea);
     };
 
+    // 🔗 Fetch saved wallet from database
+    const fetchSavedWallet = useCallback(async () => {
+        try {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session?.access_token) return;
+
+            const res = await fetch("/api/update-wallet", {
+                headers: { "Authorization": `Bearer ${session.access_token}` },
+            });
+            const data = await res.json();
+            if (data.success && data.wallet_address) {
+                setSavedWallet(data.wallet_address);
+            }
+        } catch (err) {
+            console.error("Failed to fetch saved wallet:", err);
+        }
+    }, []);
+
+    // 🔗 Save wallet address to database
+    const saveWalletToDb = useCallback(async (walletAddress: string) => {
+        setWalletSaving(true);
+        setWalletError(null);
+        setWalletSuccess(false);
+
+        try {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session?.access_token) {
+                setWalletError("Session expired. Please verify again.");
+                return;
+            }
+
+            const res = await fetch("/api/update-wallet", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${session.access_token}`,
+                },
+                body: JSON.stringify({ walletAddress }),
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                setWalletError(data.error || "Failed to link wallet");
+                return;
+            }
+
+            setSavedWallet(data.wallet_address);
+            setWalletSuccess(true);
+            setTimeout(() => setWalletSuccess(false), 3000);
+        } catch (err) {
+            console.error("Failed to save wallet:", err);
+            setWalletError("Network error. Please try again.");
+        } finally {
+            setWalletSaving(false);
+        }
+    }, []);
+
+    // Callback: When wallet connects or changes
+    const handleWalletConnected = useCallback((newAddress: string) => {
+        if (step === "RESULT") {
+            saveWalletToDb(newAddress);
+        }
+    }, [step, saveWalletToDb]);
+
+    // Callback: When wallet disconnects
+    const handleWalletDisconnected = useCallback(() => {
+        // Don't clear savedWallet from DB — just local UI state
+        // User might reconnect same wallet
+    }, []);
+
     return (
         <div className="min-h-screen bg-black text-white flex flex-col items-center p-6 relative overflow-hidden">
             {/* Background Ambience */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-[#2563EB]/20 blur-[120px] rounded-full pointer-events-none" />
 
             <div className="w-full max-w-md relative z-10 my-auto">
-                <Link href="/" className="block mb-6 text-gray-500 hover:text-white transition-colors text-sm w-fit">
-                    ← Back to Home
-                </Link>
+                {/* Top Bar: Back + Wallet */}
+                <div className="flex items-center justify-between mb-6">
+                    <Link href="/" className="text-gray-500 hover:text-white transition-colors text-sm">
+                        ← Back to Home
+                    </Link>
+                    {step === "RESULT" && (
+                        <ConnectWalletButton
+                            showChange
+                            onWalletConnected={handleWalletConnected}
+                            onWalletDisconnected={handleWalletDisconnected}
+                        />
+                    )}
+                </div>
 
                 <h1 className="text-3xl font-bold text-center mb-2">
                     {step === "OTP" ? "OTP Verification" : step === "RESULT" ? "YOUR STATS" : "Check Your Status"}
@@ -348,6 +443,35 @@ export default function LookupPage() {
                                         <div className="text-[10px] uppercase tracking-wider text-gray-500">Points</div>
                                     </div>
                                 </div>
+
+                                {/* Wallet Status Indicator */}
+                                {(walletSaving || walletError || walletSuccess || savedWallet) && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: -5 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border text-xs font-medium ${
+                                            walletSaving
+                                                ? 'bg-[#2563EB]/10 border-[#2563EB]/30 text-[#2563EB]'
+                                                : walletError
+                                                ? 'bg-red-500/10 border-red-500/30 text-red-400'
+                                                : walletSuccess
+                                                ? 'bg-green-500/10 border-green-500/30 text-green-400'
+                                                : savedWallet
+                                                ? 'bg-white/5 border-white/10 text-gray-400'
+                                                : ''
+                                        }`}
+                                    >
+                                        {walletSaving ? (
+                                            <><Loader2 size={14} className="animate-spin" /> Linking wallet to your account...</>
+                                        ) : walletError ? (
+                                            <><AlertCircle size={14} /> {walletError}</>
+                                        ) : walletSuccess ? (
+                                            <><CheckCircle2 size={14} /> Wallet linked successfully!</>
+                                        ) : savedWallet ? (
+                                            <><Wallet size={14} className="text-gray-500" /> Linked: <span className="font-mono text-white/70">{savedWallet.slice(0, 6)}...{savedWallet.slice(-4)}</span></>
+                                        ) : null}
+                                    </motion.div>
+                                )}
 
                                 <div className="bg-[#2563EB]/10 border border-[#2563EB]/30 p-4 rounded-xl relative overflow-hidden">
                                     <p className="text-[10px] uppercase tracking-wider text-[#2563EB] mb-2 font-bold">

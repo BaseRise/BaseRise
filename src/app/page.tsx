@@ -16,6 +16,10 @@ export default function LandingPage() {
   const [message, setMessage] = useState<{ text: string; type: 'success' | 'error' } | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // Dynamic import or check if mounted to avoid hydration mismatch might be good?
+  // But ConnectKitButton handles client-side rendering well usually.
+  // Actually, since we are using "use client" in both files, it should be fine.
+
   // Auto-hide message after 5 seconds
   useEffect(() => {
     if (message) {
@@ -115,11 +119,12 @@ export default function LandingPage() {
           {/* Right Side Actions - Desktop Only */}
           <div className="hidden md:flex items-center gap-4">
             <Link href="/waitlist">
-              <button className="px-4 md:px-5 py-2 md:py-2.5 bg-gradient-to-r from-[#2563EB] to-[#1E3A8A] text-white font-semibold rounded-full text-xs md:text-sm hover:from-[#3B82F6] hover:to-[#2563EB] transition-all shadow-[0_0_15px_rgba(37,99,235,0.3)]">
-                Join Waitlist
+              <button className="px-4 md:px-5 py-2 md:py-2.5 bg-gradient-to-r from-[#2563EB] to-[#1E3A8A] text-white font-semibold rounded-full text-xs md:text-sm hover:from-[#3B82F6] hover:to-[#2563EB] transition-all shadow-[0_0_15px_rgba(37,99,235,0.3)] flex items-center gap-2 border border-white/10">
+                Join Waitlist <ArrowRight size={16} />
               </button>
             </Link>
           </div>
+
 
           {/* Mobile Hamburger Button */}
           <button
@@ -141,11 +146,11 @@ export default function LandingPage() {
               transition={{ duration: 0.2 }}
               className="md:hidden border-t border-white/5 bg-[#050505]/95 backdrop-blur-md overflow-hidden"
             >
-              <div className="px-6 py-4 space-y-2">
+              <div className="px-6 py-4 space-y-4">
                 <Link
                   href="/leaderboard"
                   onClick={() => setMenuOpen(false)}
-                  className="flex items-center gap-3 w-full px-4 py-4 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-all font-medium"
+                  className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-all font-medium"
                 >
                   <Layers size={20} />
                   Leaderboard
@@ -153,7 +158,7 @@ export default function LandingPage() {
                 <Link
                   href="/lookup"
                   onClick={() => setMenuOpen(false)}
-                  className="flex items-center gap-3 w-full px-4 py-4 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-all font-medium"
+                  className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-all font-medium"
                 >
                   <ShieldCheck size={20} />
                   Check Your Profile
@@ -161,7 +166,7 @@ export default function LandingPage() {
                 <Link
                   href="/waitlist"
                   onClick={() => setMenuOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full px-4 py-4 rounded-xl bg-gradient-to-r from-[#2563EB] to-[#1E3A8A] text-white font-semibold hover:from-[#3B82F6] hover:to-[#2563EB] transition-all shadow-[0_0_15px_rgba(37,99,235,0.3)]"
+                  className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-gradient-to-r from-[#2563EB] to-[#1E3A8A] border border-white/10 text-white font-semibold hover:from-[#3B82F6] hover:to-[#2563EB] transition-all shadow-lg shadow-[#2563EB]/20"
                 >
                   Join Waitlist
                   <ArrowRight size={18} />
@@ -321,7 +326,7 @@ export default function LandingPage() {
                   <Send size={18} className="text-gray-400 group-hover:text-white transition-colors duration-300" />
                 </a>
               </div>
-            </div> 
+            </div>
 
             {/* Resources (Simplified) */}
             <div className="md:col-span-3 space-y-6 text-center md:text-left">
