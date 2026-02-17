@@ -23,5 +23,8 @@ export const config = createConfig(
         appDescription: "Next-generation blockchain platform on Base",
         appUrl: "https://baserise.online", // Your domain
         appIcon: "https://baserise.online/favicon.ico",
+
+        // Disable "Continue with Family" wallet option
+        enableFamily: false,
     }),
 );

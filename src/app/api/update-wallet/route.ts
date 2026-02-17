@@ -166,3 +166,56 @@ export async function GET(req: NextRequest) {
     );
   }
 }
+
+// DELETE: Clear wallet address for authenticated user (on disconnect)
+export async function DELETE(req: NextRequest) {
+  try {
+    const authHeader = req.headers.get("Authorization");
+    const token = authHeader?.replace("Bearer ", "");
+
+    if (!token) {
+      return NextResponse.json(
+        { error: "Authentication required" },
+        { status: 401 }
+      );
+    }
+
+    const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser(token);
+
+    if (authError || !user?.email) {
+      return NextResponse.json(
+        { error: "Invalid or expired session" },
+        { status: 401 }
+      );
+    }
+
+    const { error } = await supabaseAdmin
+      .from("waitlist")
+      .update({ wallet_address: null })
+      .eq("email", user.email.toLowerCase())
+      .eq("is_verified", true);
+
+    if (error) {
+      console.error("Delete wallet error:", error);
+      return NextResponse.json(
+        { error: "Failed to clear wallet address" },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json(
+      {
+        success: true,
+        message: "Wallet disconnected successfully",
+        wallet_address: null,
+      },
+      { status: 200 }
+    );
+  } catch (err) {
+    console.error("Server error:", err);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
+  }
+}

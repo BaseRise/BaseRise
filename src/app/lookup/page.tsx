@@ -240,6 +240,21 @@ export default function LookupPage() {
         }
     }, []);
 
+    // 🔗 Clear wallet address from database (on disconnect)
+    const clearWalletFromDb = useCallback(async () => {
+        try {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session?.access_token) return;
+
+            await fetch("/api/update-wallet", {
+                method: "DELETE",
+                headers: { "Authorization": `Bearer ${session.access_token}` },
+            });
+        } catch (err) {
+            console.error("Failed to clear wallet:", err);
+        }
+    }, []);
+
     // Callback: When wallet connects or changes
     const handleWalletConnected = useCallback((newAddress: string) => {
         if (step === "RESULT") {
@@ -249,9 +264,12 @@ export default function LookupPage() {
 
     // Callback: When wallet disconnects
     const handleWalletDisconnected = useCallback(() => {
-        // Don't clear savedWallet from DB — just local UI state
-        // User might reconnect same wallet
-    }, []);
+        // Clear wallet from DB when user disconnects
+        if (step === "RESULT") {
+            clearWalletFromDb();
+        }
+        setSavedWallet(null);
+    }, [step, clearWalletFromDb]);
 
     return (
         <div className="min-h-screen bg-black text-white flex flex-col items-center p-6 relative overflow-hidden">
@@ -267,6 +285,7 @@ export default function LookupPage() {
                     {step === "RESULT" && (
                         <ConnectWalletButton
                             showChange
+                            savedWallet={savedWallet}
                             onWalletConnected={handleWalletConnected}
                             onWalletDisconnected={handleWalletDisconnected}
                         />
@@ -449,17 +468,16 @@ export default function LookupPage() {
                                     <motion.div
                                         initial={{ opacity: 0, y: -5 }}
                                         animate={{ opacity: 1, y: 0 }}
-                                        className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border text-xs font-medium ${
-                                            walletSaving
-                                                ? 'bg-[#2563EB]/10 border-[#2563EB]/30 text-[#2563EB]'
-                                                : walletError
+                                        className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border text-xs font-medium ${walletSaving
+                                            ? 'bg-[#2563EB]/10 border-[#2563EB]/30 text-[#2563EB]'
+                                            : walletError
                                                 ? 'bg-red-500/10 border-red-500/30 text-red-400'
                                                 : walletSuccess
-                                                ? 'bg-green-500/10 border-green-500/30 text-green-400'
-                                                : savedWallet
-                                                ? 'bg-white/5 border-white/10 text-gray-400'
-                                                : ''
-                                        }`}
+                                                    ? 'bg-green-500/10 border-green-500/30 text-green-400'
+                                                    : savedWallet
+                                                        ? 'bg-white/5 border-white/10 text-gray-400'
+                                                        : ''
+                                            }`}
                                     >
                                         {walletSaving ? (
                                             <><Loader2 size={14} className="animate-spin" /> Linking wallet to your account...</>
